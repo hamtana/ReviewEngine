@@ -1,7 +1,12 @@
 import express from "express";
 import nodemailer from "nodemailer";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+app.use(cors({origin: "http://localhost:5173"})); 
 app.use(express.json());
 
 app.post("/send-email", async (req, res) => {
