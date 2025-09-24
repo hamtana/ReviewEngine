@@ -1,6 +1,6 @@
 # Use the latest NodeJs Image
 
-FROM node:20.19.5-alpine
+FROM node:20-alpine
 
 # Set Working Directory inside the container
 WORKDIR /usr/src/app
