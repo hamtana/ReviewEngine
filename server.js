@@ -18,6 +18,7 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173", // dev frontend
   "http://localhost:3001", // container
+  "https://review-engine.phillipsmusictech.co.nz", //domain
 ];
 app.use(cors({ origin: allowedOrigins }));
 
