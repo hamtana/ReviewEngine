@@ -25,9 +25,9 @@ export default function StarRating({ maxStars = 5, onRate }) {
             className="transition-colors duration-200"
           >
             {isActive ? (
-              <BsStarFill className="text-yellow-400" />
+              <BsStarFill size="120" className="text-yellow-400" />
             ) : (
-              <BsStar className="text-gray-300" />
+              <BsStar size="120" className="text-gray-300" />
             )}
           </button>
         );
