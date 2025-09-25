@@ -31,7 +31,7 @@ export default function App() {
           clearInterval(interval);
           window.parent.postMessage(
             {action: "redirect", url: GOOGLE_REVIEW_URL},
-            "https://nichols-uat.acumenonline.co.nz/"
+            "https://nichols.co.nz/"
           );
         }
         return prev - 1;
