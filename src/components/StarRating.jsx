@@ -11,7 +11,7 @@ export default function StarRating({ maxStars = 5, onRate }) {
   };
 
   return (
-    <div className="flex gap-2 text-3xl">
+    <div className="flex gap-2 text-xl sm:text-2xl md:text-3xl">
       {[...Array(maxStars)].map((_, i) => {
         const value = i + 1;
         const isActive = (hover || rating) >= value;
@@ -25,9 +25,9 @@ export default function StarRating({ maxStars = 5, onRate }) {
             className="transition-colors duration-200"
           >
             {isActive ? (
-              <BsStarFill size="120" className="text-yellow-400" />
+              <BsStarFill className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-22 lg:h-22 text-yellow-400" />
             ) : (
-              <BsStar size="120" className="text-gray-300" />
+              <BsStar className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-22 lg:h-22 text-gray-100" />
             )}
           </button>
         );

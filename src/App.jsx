@@ -45,7 +45,8 @@ export default function App() {
     <div className="min-h-screen bg-white flex flex-col items-center p-4">
       <StarRating onRate={handleRate} />
 
-      <p className="p-4 items-center text-lg">Select a Rating</p>
+      <p className="p-4 items-center text-base sm:text-lg md:text-xl lg:text-2xl">
+  Select a Rating</p>
 
       {selectedRating > 0 && (
         <p className="mt-4 text-lg">
