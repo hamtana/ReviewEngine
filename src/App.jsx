@@ -29,7 +29,10 @@ export default function App() {
       setRedirectCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
-          window.open(GOOGLE_REVIEW_URL, "_blank");
+          window.parent.postMessage(
+            {action: "redirect", url: GOOGLE_REVIEW_URL},
+            "https://nichols.co.nz"
+          );
         }
         return prev - 1;
       });
