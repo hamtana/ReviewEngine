@@ -29,7 +29,7 @@ export default function App() {
       setRedirectCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
-          window.location.href = GOOGLE_REVIEW_URL;
+          window.open(GOOGLE_REVIEW_URL, "_blank");
         }
         return prev - 1;
       });
