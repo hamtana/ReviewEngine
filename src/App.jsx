@@ -17,7 +17,7 @@ export default function App() {
       setModalOpen(true);
     } else if (rating >= 4) {
       setThankYouOpen(true);
-      setRedirectCountdown(10);
+      setRedirectCountdown(5);
     }
   };
 
@@ -31,7 +31,7 @@ export default function App() {
           clearInterval(interval);
           window.parent.postMessage(
             {action: "redirect", url: GOOGLE_REVIEW_URL},
-            "https://nichols.co.nz/"
+            "https://www.nichols.co.nz/Online-Reviews/Leave-a-Review"
           );
         }
         return prev - 1;
