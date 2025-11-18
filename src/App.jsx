@@ -9,7 +9,7 @@ export default function App() {
   const [redirectCountdown, setRedirectCountdown] = useState(6);
 
   const GOOGLE_REVIEW_URL =
-    "https://www.google.com/search?sca_esv=e2c71ab81425b6e6&hl=en-NZ&gl=nz&si=AMgyJEuzsz2NflaaWzrzdpjxXXRaJ2hfdMsbe_mSWso6src8s0oo0lIk-gPcXlXgrSKJbAzrLvXKC7TLiy860OCvJcqAkA8g9Vp6u9OeZ1uthF8zTHfx1V2aRXa4qy7HP5KVOZtgO0VPNNID6R6VPVKBI8vhT1-gOw%3D%3D&q=Nichol%27s+Garden+Centre+Dunedin+Reviews&sa=X&ved=2ahUKEwjP4NHLh_OPAxUrha8BHf0XFr8Q0bkNegQIJhAE&cshid=1758773997179312&biw=2560&bih=1294&dpr=1#lrd=0xa82eae9fa765ab2b:0x2cb8cc170efb2fff,3,,,";
+    "https://www.google.com/search?sca_esv=e2c71ab81425b6e6&hl=en-NZ&gl=nz&si=AMgyJEuzsz2NflaaWzrzdpjxXXRaJ2hfdMsbe_mSWso6src8s0oo0lIk-gPcXlXgrSKJbAzrLvXKC7TLiy860OCvJcqAkA8g9Vp6u9OeZ1uthF8zTHfx1V2aRXa4qy7HP5KVOZtgO0VPNNID6R6VPVKBI8vhT1-gOw%3D%3D&q=Nichol%27s+Garden+Centre+Dunedin+Reviews&sa=X&ved=2ahUKEwjP4NHLh_OPAxUrha8BHf0XFr8Q0bkNegQIJhAE&cshid=1758773997179312&biw=2560&bih=1294&dpr=1#lrd=0xa82eae9fa765ab2b:0x2cb8cc170efb2fff,3";
 
   const handleRate = (rating) => {
     setSelectedRating(rating);
@@ -31,7 +31,7 @@ export default function App() {
           clearInterval(interval);
           window.parent.postMessage(
             {action: "redirect", url: GOOGLE_REVIEW_URL},
-            "https://nichols.co.nz/"
+            "*"
           );
         }
         return prev - 1;
