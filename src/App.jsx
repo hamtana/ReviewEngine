@@ -17,7 +17,6 @@ export default function App() {
       setModalOpen(true);
     } else if (rating >= 4) {
       setThankYouOpen(true);
-      setRedirectCountdown(5);
     }
   };
 
