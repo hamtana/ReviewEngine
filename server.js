@@ -57,8 +57,9 @@ app.post("/api/send-email", async (req, res) => {
 app.use(express.static(path.join(__dirname, "./dist")));
 
 // ✅ Catch-all: frontend routes go to React
+// Included a catch limiter
 const catchAllLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000, // 15 minutes - how long a request should be remembered
   max: 100, // limit each IP to 100 requests per windowMs
 });
 app.get(/.*/, catchAllLimiter, (req, res) => {
