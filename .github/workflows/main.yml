@@ -33,7 +33,7 @@ jobs:
 
             # Run the new container
             sudo docker run -d \
-              --name review-engine-prod \
+              --name review-engine-prod:latest \
               -p 3001:3001 \
               --restart always \
               review-engine-app-prod
