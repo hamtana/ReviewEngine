@@ -25,15 +25,15 @@ jobs:
             git pull origin main
 
             # Stop old container
-            sudo docker stop review-engine-prod || true
-            sudo docker rm review-engine-prod || true
+            sudo docker stop review-engine || true
+            sudo docker rm review-engine || true
 
             # Build new image
-            sudo docker build -t review-engine-prod .
+            sudo docker build -t review-engine-app-prod .
 
             # Run the new container
             sudo docker run -d \
-              --name review-engine-prod:latest \
+              --name review-engine \
               -p 3001:3001 \
               --restart always \
               review-engine-app-prod
