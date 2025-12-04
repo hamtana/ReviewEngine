@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
@@ -56,7 +57,12 @@ app.post("/api/send-email", async (req, res) => {
 app.use(express.static(path.join(__dirname, "./dist")));
 
 // ✅ Catch-all: frontend routes go to React
-app.get(/.*/, (req, res) => {
+// Included a catch limiter
+const catchAllLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes - how long a request should be remembered
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+app.get(/.*/, catchAllLimiter, (req, res) => {
   res.sendFile(path.join(__dirname, "./dist", "index.html"));
 });
 
