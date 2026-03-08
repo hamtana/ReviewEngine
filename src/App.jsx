@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import StarRating from "./components/StarRating";
 import FeedbackModal from "./components/FeedbackModal";
+import dotenv from "dotenv";
 
 export default function App() {
   const [selectedRating, setSelectedRating] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [thankYouOpen, setThankYouOpen] = useState(false);
-
 
   const GOOGLE_REVIEW_URL =
     "https://www.google.com/search?sca_esv=e2c71ab81425b6e6&hl=en-NZ&gl=nz&si=AMgyJEuzsz2NflaaWzrzdpjxXXRaJ2hfdMsbe_mSWso6src8s0oo0lIk-gPcXlXgrSKJbAzrLvXKC7TLiy860OCvJcqAkA8g9Vp6u9OeZ1uthF8zTHfx1V2aRXa4qy7HP5KVOZtgO0VPNNID6R6VPVKBI8vhT1-gOw%3D%3D&q=Nichol%27s+Garden+Centre+Dunedin+Reviews&sa=X&ved=2ahUKEwjP4NHLh_OPAxUrha8BHf0XFr8Q0bkNegQIJhAE&cshid=1758773997179312&biw=2560&bih=1294&dpr=1#lrd=0xa82eae9fa765ab2b:0x2cb8cc170efb2fff,3";
@@ -19,7 +19,6 @@ export default function App() {
       setThankYouOpen(true);
     }
   };
-
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center p-4">
@@ -60,7 +59,7 @@ export default function App() {
               onClick={() => {
                 window.parent.postMessage(
                   { action: "redirect", url: GOOGLE_REVIEW_URL },
-                  "*" // important so it works in prod + dev
+                  "*", // important so it works in prod + dev
                 );
               }}
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-lg transition-colors"

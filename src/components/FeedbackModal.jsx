@@ -6,11 +6,13 @@ export default function FeedbackModal({ open, onClose, rating }) {
 
   if (!open) return null;
 
+  const endPoint = import.meta.env.VITE_NODEMAILER_ENDPOINT;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("/api/send-email", {
+      const res = await fetch(endPoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,8 +39,7 @@ export default function FeedbackModal({ open, onClose, rating }) {
     }
   };
 
-
- return (
+  return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
       <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 relative">
         <button
