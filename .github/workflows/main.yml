@@ -23,23 +23,23 @@ jobs:
           key: ${{ secrets.VPS_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd projects/ReviewEngine
+            cd /opt/projects/ReviewEngine
 
             # Pull the latest code
             git pull origin main
 
             # Stop old container
-            sudo docker stop review-engine || true
-            sudo docker rm review-engine || true
+            docker stop review-engine || true
+            docker rm review-engine || true
 
             # Build new image
-            sudo docker build -t review-engine-app-prod .
+            docker build -t review-engine-app-prod .
 
             # Remove untagged images
-            sudo docker image prune -f
+            docker image prune -f
 
             # Run the new container
-            sudo docker run -d \
+            docker run -d \
               --name review-engine \
               -p 3001:3001 \
               --restart always \
