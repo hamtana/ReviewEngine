@@ -36,7 +36,7 @@ jobs:
             sudo docker build -t review-engine-app-prod .
 
             # Remove untagged images
-            sudo docker image prune
+            sudo docker image prune -f
 
             # Run the new container
             sudo docker run -d \
