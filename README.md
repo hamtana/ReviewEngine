@@ -8,6 +8,3 @@ A lightweight review-collection system designed to capture customer feedback bef
 - **Express.js**
 
 The project is deployed on my VPS, and new review instances are dynamically generated on the website using JavaScript.
-
-## Current Deployment
-- **Nichol’s Website:** https://www.nichols.co.nz/Online-Reviews/Leave-a-Review
