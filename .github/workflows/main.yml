@@ -1,46 +1,35 @@
 name: Deploy to VPS
-
 on:
   push:
     branches: ["main"]
-
 permissions:
   contents: read
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy over SSH
-        uses: appleboy/ssh-action@v1.2.0
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
+      - name: Deploy over Tailscale SSH
+        run: |
+          ssh -o StrictHostKeyChecking=accept-new dockeruser@${{ secrets.VPS_TAILSCALE_IP }} '
             cd /opt/projects/ReviewEngine
-
-            # Pull the latest code
             git pull origin main
-
-            # Stop old container
             docker stop review-engine || true
             docker rm review-engine || true
-
-            # Build new image
             docker build -t review-engine-app-prod .
-
-            # Remove untagged images
             docker image prune -f
-
-            # Run the new container
             docker run -d \
               --name review-engine \
               -p 3001:3001 \
               --restart always \
               review-engine-app-prod
+          '
