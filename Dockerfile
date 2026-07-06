@@ -1,26 +1,26 @@
 # Use the latest NodeJs Image
 
-FROM node:20-alpine
+FROM node:24-alpine
 
 # Set Working Directory inside the container
 WORKDIR /usr/src/app
 
-# COPY package.json and package-lock.json first
-COPY package*.json ./
+# COPY package.json and pnpm-lock.yaml first
+COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies
-RUN npm install
+# Enable pnpm and install dependencies
+RUN corepack enable && pnpm install --frozen-lockfile
 
 # COPY the rest of the app
 COPY . . 
 
 # Build the project
-RUN npm run build
+RUN pnpm build
 
 # EXPOSE the app Port. 
 EXPOSE 3001
 
 # Run the Application
-CMD [ "npm", "start"]
+CMD [ "pnpm", "start"]
 
 
