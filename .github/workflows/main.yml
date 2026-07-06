@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Connect to Tailscale
         uses: tailscale/github-action@v3
@@ -33,3 +33,6 @@ jobs:
               --restart always \
               review-engine-app-prod
           '
+      - name: Tailscale down
+        if: always()
+        run: sudo tailscale down
