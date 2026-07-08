@@ -15,7 +15,7 @@ RUN corepack enable && pnpm install --frozen-lockfile
 COPY . . 
 
 # Ensure curl is installed in the alpine image
-RUN apk add --no-cache curl && npm ci
+RUN apk add --no-cache curl
 
 # Build the project
 RUN pnpm build
