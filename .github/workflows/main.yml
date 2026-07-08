@@ -29,6 +29,9 @@ jobs:
             docker image prune -f
             docker run -d \
               --name review-engine \
+              --log-driver json-file \
+              --log-opt max-size=10m \
+              --log-opt max-file=3 \
               -p 3001:3001 \
               --restart always \
               review-engine-app-prod

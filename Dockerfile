@@ -14,13 +14,20 @@ RUN corepack enable && pnpm install --frozen-lockfile
 # COPY the rest of the app
 COPY . . 
 
+# Ensure curl is installed in the alpine image
+RUN apk add --no-cache curl && npm ci
+
 # Build the project
 RUN pnpm build
 
 # EXPOSE the app Port. 
 EXPOSE 3001
 
+# Configure the health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD curl -f http://localhost:3001/health || exit 1
+
 # Run the Application
-CMD [ "pnpm", "start"]
+CMD ["pnpm", "start"]
 
 
